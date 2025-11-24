@@ -1,0 +1,5 @@
+# ASGI server
+uvicorn==0.38.0
+
+# FastAPI
+fastapi==0.121.3
