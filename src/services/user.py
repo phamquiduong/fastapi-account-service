@@ -1,7 +1,6 @@
 from sqlmodel import Session
 
 from models.user import UserModel
-from schemas.user.base import UserSchema
 from schemas.user.create import UserCreateSchema
 from services.password import PasswordService
 
@@ -11,7 +10,7 @@ class UserService:
         self.session = session
         self.password_service = password_service
 
-    def create(self, user_create: UserCreateSchema) -> UserSchema:
+    def create(self, user_create: UserCreateSchema) -> UserModel:
         user_create.password = self.password_service.get_password_hash(user_create.password)
 
         user_model = UserModel.model_validate(user_create.model_dump())
@@ -19,4 +18,4 @@ class UserService:
         self.session.commit()
         self.session.refresh(user_model)
 
-        return UserSchema.model_validate(user_model.model_dump())
+        return user_model

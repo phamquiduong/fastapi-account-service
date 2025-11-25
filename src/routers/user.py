@@ -1,7 +1,7 @@
-from fastapi import APIRouter, Depends, status
+from fastapi import APIRouter, status
 
 from dependencies.user import UserServiceDep
-from schemas.user.base import UserSchema
+from models.user import UserModel
 from schemas.user.create import UserCreateSchema
 
 user_router = APIRouter(prefix='/users', tags=['Users'])
@@ -11,5 +11,5 @@ user_router = APIRouter(prefix='/users', tags=['Users'])
 async def register_user(
     user_service: UserServiceDep,
     user_create: UserCreateSchema
-) -> UserSchema:
+) -> UserModel:
     return user_service.create(user_create)
