@@ -3,3 +3,12 @@ uvicorn==0.38.0
 
 # FastAPI
 fastapi==0.121.3
+
+# JWT handling
+PyJWT==2.10.1
+
+# Password hashing library with Argon2 support
+pwdlib[argon2]==0.3.0
+
+# SQLModel for database interactions
+sqlmodel==0.0.27
