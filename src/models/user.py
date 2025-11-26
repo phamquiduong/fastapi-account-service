@@ -1,3 +1,4 @@
+from pydantic import EmailStr
 from sqlmodel import Field
 
 from models.base import BaseModel
@@ -8,3 +9,6 @@ class UserModel(BaseModel, table=True):
 
     username: str = Field(unique=True, index=True)
     password: str = Field(exclude=True)
+
+    email: EmailStr | None = Field(default=None, unique=True)
+    email_verified: bool = Field(default=False)
